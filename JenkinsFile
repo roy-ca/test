@@ -1,0 +1,25 @@
+pipeline{
+    agent any
+    stages {
+        stage('getDetails'){
+            steps{
+                echo "Getting details of snapshot created."
+                echo " ++++++++++++"
+                // snDevOpsChange()
+                script{
+                 snDevOpsConfigGetSnapshots(
+                         applicationName: "Jenkins_Test_App",
+                         changesetNumber: null,
+                        //  changesetNumber:"",
+                         deployableName: "PreProd"
+                         ,outputFormat:"xml",
+                         isValidated: true
+                         )
+                }
+                
+                echo "details stage finished successfully."
+            }
+    }
+  }
+}
+        
